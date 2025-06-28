@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="NewProvit - Vitrin tasarımları ve örnekleri" />
+    <title>NewProvit | Vitrinler</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/vitrin.css" />
+    
+    <!-- Favicon -->
+    <link rel="icon" href="main img/minilogo.png" type="image/png" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- External Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/4122d01d9a.js" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    <div class="fullBody">
+      <!-- Header -->
+      <header>
+        <div class="head" id="down">
+          <div class="middle">
+            <a href="index.html"><img src="main img/LogoP.png" alt="NewProvit Logo" /></a>
+            <a href="index.html"><p>Ana Sayfa</p></a>
+            <a href="index.html#about"><p>Hakkımızda</p></a>
+            <a href="index.html#services"><p>Hizmetlerimiz</p></a>
+            <a href="vitrin.html"><p>Vitrinler</p></a>
+            <a href="aksesuar.html"><p>Aksesuarlar</p></a>
+            <a href="contact.html"><p>İletişim</p></a>
+          </div>
+        </div> 
+
+        <section class="menu-section">
+        <div class="menu-container">
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="menu-logo">
+                <img src="main img/LogoP.png" alt="Site Logo">
+            </div>
+        </div>
+    </section>
+    
+    <div class="menu-overlay" id="menuOverlay"></div>
+    
+    <div class="mobile-menu" id="mobileMenu">
+        <nav class="menu-nav">
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Ana Sayfa</a></li>
+                <li><a href="index.html#about"><i class="fas fa-info-circle"></i> Hakkımızda</a></li>
+                <li><a href="index.html#services"><i class="fas fa-briefcase"></i> Hizmetlerimiz</a></li>
+                <li><a href="vitrin.html"><i class="fas fa-images"></i> Vitrinler</a></li>
+                <li><a href="aksesuar.html"><i class="fas fa-images"></i> Aksesuarlar</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> İletişim</a></li>
+            </ul>
+        </nav>
+    </div>
+      </header>
+
+      <!-- Vitrin Gallery -->
+      <section class="vitrins">
+        <ul>
+          <li class="list active" data-filter="Hepsi">Hepsi</li>
+          <li class="list" data-filter="Gebze">Gebze Vitrin</li>
+          <li class="list" data-filter="Konya">Konya Vitrin</li>
+          <li class="list" data-filter="Rize">Rize Vitrin</li>
+          <li class="list" data-filter="Kastamonu">Kastamonu Vitrin</li>
+        </ul>
+
+        <div class="product">
+          <div class="itembox" data-item="Gebze"><img src="vitrin img/vitrin8.png" alt="Gebze Vitrin"></div>
+          <div class="itembox" data-item="Konya"><img src="vitrin img/vitrin7.png" alt="Konya Vitrin"></div>
+          <div class="itembox" data-item="Rize"><img src="vitrin img/vitrin6.png" alt="Rize Vitrin"></div>
+          <div class="itembox" data-item="Kastamonu"><img src="vitrin img/vitrin5.png" alt="Kastamonu Vitrin"></div>
+          <div class="itembox" data-item="Gebze"><img src="vitrin img/vitrin4.png" alt="Gebze Vitrin"></div>
+          <div class="itembox" data-item="Konya"><img src="vitrin img/vitrin3.png" alt="Konya Vitrin"></div>
+          <div class="itembox" data-item="Rize"><img src="vitrin img/vitrin2.png" alt="Rize Vitrin"></div>
+          <div class="itembox" data-item="Kastamonu"><img src="vitrin img/vitrin1.png" alt="Kastamonu Vitrin"></div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <section class="footer">
+        <div class="discov">
+          <img src="main img/LogoP.png" alt="NewProvit Logo" />
+        </div>
+
+        <div class="socialmedia">
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </section>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/common.js"></script>
+    <script src="js/vitrin.js"></script>
+  </body>
+</html>
