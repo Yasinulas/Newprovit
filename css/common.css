@@ -36,6 +36,9 @@
   
   /* Z-index layers */
   --z-fullscreen: 1000;
+  --z-menu: 99999;
+  --z-overlay: 99998;
+  --z-header: 99997;
 }
 
 /* Reset and base styles */
@@ -51,6 +54,12 @@
   -webkit-overflow-scrolling: touch;
 }
 
+/* Ensure menu-section is always on top */
+.menu-section {
+  z-index: 999999 !important;
+  position: relative;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -59,6 +68,19 @@ a {
 body {
   color: var(--text-color);
   font-weight: var(--font-weight-normal);
+}
+
+/* General image styling - soft edges for modern look */
+img {
+  border-radius: var(--border-radius-md);
+  transition: var(--transition-fast);
+}
+
+/* Exclude slider images from soft edges */
+.slider-container img,
+.slider img,
+.slide img {
+  border-radius: 0;
 }
 
 /* Layout */
@@ -81,7 +103,7 @@ body {
   position: relative;
 }
 
-.middle {
+  .middle {
   display: flex;
   flex-direction: row;
   width: 75%;
@@ -89,11 +111,13 @@ body {
   font-size: 16px;
   justify-content: space-around;
   align-items: center;
-  z-index: 3;
+  z-index: var(--z-header);
   margin: auto;
   position: fixed;
   transition: var(--transition-normal);
 }
+
+
 
 .acter {
   background-color: var(--overlay-color);
@@ -108,6 +132,12 @@ body {
 
 .head img {
   width: 150px;
+  border-radius: var(--border-radius-md);
+  transition: var(--transition-fast);
+}
+
+.head img:hover {
+  border-radius: var(--border-radius-lg);
 }
 
 .head a {
@@ -142,6 +172,12 @@ body {
 
 .footer .discov img {
   width: 200px;
+  border-radius: var(--border-radius-md);
+  transition: var(--transition-fast);
+}
+
+.footer .discov img:hover {
+  border-radius: var(--border-radius-lg);
 }
 
 .socialmedia {
@@ -183,17 +219,18 @@ body {
      display: none;
   }
 
-  .menu-section {
+          .menu-section {
             background: rgba(0, 0, 0);
             color: white;
             padding: 1rem;
             position: fixed;
             width: 100%;
             top: 0;
-            z-index: 1000;
+            z-index: 999999 !important;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
+            pointer-events: auto;
         }
         
         .menu-container {
@@ -203,17 +240,22 @@ body {
             width: 100%;
             margin: 0 auto;
             position: relative;
+            z-index: 999999 !important;
+            pointer-events: auto;
         }
         
         .menu-logo {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
+            z-index: 999999 !important;
+            pointer-events: auto;
         }
         
         .menu-logo img {
             height: 30px;
             width: auto;
+            pointer-events: auto;
         }
         
         .menu-toggle {
@@ -227,6 +269,56 @@ body {
             justify-content: center;
             width: 40px;
             height: 40px;
+            z-index: 999999 !important;
+            position: relative;
+            pointer-events: auto;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        
+        .menu-toggle:active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(0.95);
+        }
+        
+        .menu-toggle:focus {
+            outline: none;
+        }
+        
+        .menu-toggle:focus-visible {
+            outline: 2px solid rgba(255, 255, 255, 0.5);
+            outline-offset: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        
+        .menu-toggle:focus:not(:focus-visible) {
+            outline: none;
+            background: none;
+            border-radius: 0;
+        }
+        
+        .menu-toggle:focus-visible:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .menu-toggle:focus-visible:active {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(0.95);
+        }
+        
+        .menu-toggle:focus-visible:active:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .menu-toggle:focus-visible:active:focus {
+            background: rgba(255, 255, 255, 0.3);
         }
         
         .mobile-menu {
@@ -238,22 +330,35 @@ body {
             max-height: calc(100vh - 70px);
             background: rgba(0, 0, 0, 0.9);
             transition: all 0.3s ease-in-out;
-            z-index: 1001;
+            z-index: 999999 !important;
             padding: 1rem;
             overflow-y: auto;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            pointer-events: auto;
         }
         
         .mobile-menu.active {
             top: 70px;
         }
         
+        .menu-nav {
+            position: relative;
+            z-index: 999999 !important;
+            pointer-events: auto;
+        }
+        
         .menu-nav ul {
             list-style: none;
+            position: relative;
+            z-index: 999999 !important;
+            pointer-events: auto;
         }
         
         .menu-nav ul li {
             margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 999999 !important;
+            pointer-events: auto;
         }
         
         .menu-nav ul li a {
@@ -264,6 +369,9 @@ body {
             padding: 0.8rem 1rem;
             transition: all 0.3s;
             border-radius: 4px;
+            position: relative;
+            z-index: 999999 !important;
+            pointer-events: auto;
         }
         
         .menu-nav ul li a:hover {
@@ -276,6 +384,9 @@ body {
             width: 20px;
             text-align: center;
             color: white;
+            position: relative;
+            z-index: 999999 !important;
+            pointer-events: auto;
         }
         
         .menu-overlay {
@@ -285,15 +396,17 @@ body {
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.5);
-            z-index: 1000;
+            z-index: 999998 !important;
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease-in-out;
+            pointer-events: none;
         }
         
         .menu-overlay.active {
             opacity: 1;
             visibility: visible;
+            pointer-events: auto;
         }
         
         main {

@@ -30,7 +30,7 @@ a {
   font-size: 16px;
   justify-content: space-around;
   align-items: center;
-  z-index: 3;
+  z-index: var(--z-header);
   margin: auto;
   position: relative;
 }
@@ -43,7 +43,7 @@ a {
   font-size: 16px;
   justify-content: space-around;
   align-items: center;
-  z-index: 3;
+  z-index: var(--z-header);
   margin: auto;
   position: fixed;
   -webkit-transition: all ease-out 0.5s;
@@ -80,6 +80,7 @@ a {
 
 .menu-section{
   display: none;
+  z-index: 999999 !important;
 }
 
 .mobile-menu{
@@ -210,6 +211,12 @@ a {
 .images img {
   width: 100%;
   height: 198px;
+  border-radius: var(--border-radius-md);
+  transition: var(--transition-fast);
+}
+
+.images img:hover {
+  border-radius: var(--border-radius-lg);
 }
 
 /* Services Section */
@@ -292,6 +299,13 @@ a {
 .my-second-slider img {
   width: 100%;
   height: 300px;
+  border-radius: var(--border-radius-md);
+  transition: var(--transition-fast);
+}
+
+.my-slider img:hover,
+.my-second-slider img:hover {
+  border-radius: var(--border-radius-lg);
 }
 
 .vtn,
@@ -367,6 +381,7 @@ a {
 
   .menu-section{
   display: block;
+  z-index: 999999 !important;
 }
 
 .mobile-menu{

@@ -158,23 +158,34 @@ class CommonUtils {
     }
     
     const defaultOptions = {
-      slideBy: "page",
+      slideBy: 1,
       autoplay: true,
-      gutter: 16,
+      gutter: 30,
       controls: false,
       autoplayButtonOutput: false,
       mouseDrag: true,
       nav: false,
       autoplayTimeout: 3000,
+      items: 4,
       responsive: {
+        0: {
+          gutter: 16,
+          edgePadding: 16,
+          items: 1,
+        },
         640: {
-          gutter: 5,
+          gutter: 20,
+          edgePadding: 20,
           items: 2,
         },
-        700: {
-          gutter: 16,
-        },
         900: {
+          gutter: 24,
+          edgePadding: 24,
+          items: 3,
+        },
+        1200: {
+          gutter: 30,
+          edgePadding: 32,
           items: 4,
         },
       },
@@ -193,10 +204,16 @@ class CommonUtils {
     const mobileMenu = document.getElementById('mobileMenu');
     const menuOverlay = document.getElementById('menuOverlay');
     
-    if (!menuToggle || !mobileMenu || !menuOverlay) return;
+    if (!menuToggle || !mobileMenu || !menuOverlay) {
+      console.warn('Mobile menu elements not found');
+      return;
+    }
     
     // Menüyü aç/kapat
-    menuToggle.addEventListener('click', function() {
+    menuToggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
       mobileMenu.classList.toggle('active');
       menuOverlay.classList.toggle('active');
       document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
@@ -236,6 +253,21 @@ class CommonUtils {
         icon.classList.remove('fa-times');
         icon.classList.add('fa-bars');
       }
+    });
+    
+    // Menü linklerine tıklandığında menüyü kapat
+    const menuLinks = mobileMenu.querySelectorAll('a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        mobileMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        
+        // Menü ikonunu değiştir
+        const icon = menuToggle.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      });
     });
   }
 

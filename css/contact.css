@@ -29,7 +29,7 @@ a {
   font-size: 16px;
   justify-content: space-around;
   align-items: center;
-  z-index: 3;
+  z-index: var(--z-header);
   margin: auto;
   position: relative;
 }
@@ -42,7 +42,7 @@ a {
   font-size: 16px;
   justify-content: space-around;
   align-items: center;
-  z-index: 3;
+  z-index: var(--z-header);
   margin: auto;
   position: fixed;
   -webkit-transition: all ease-out 0.5s;
@@ -79,6 +79,7 @@ a {
 
 .menu-section{
   display: none;
+  z-index: 999999 !important;
 }
 
 .mobile-menu{
@@ -192,11 +193,13 @@ a {
 
   .menu-section{
   display: block;
+  z-index: 999999 !important;
 }
 
 .mobile-menu{
   display: block;
 }
+
 
   .information {
     flex-direction: column;
