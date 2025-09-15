@@ -52,6 +52,7 @@
   line-height: var(--line-height);
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
 }
 
 /* Ensure menu-section is always on top */
@@ -68,6 +69,9 @@ a {
 body {
   color: var(--text-color);
   font-weight: var(--font-weight-normal);
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
 }
 
 /* General image styling - soft edges for modern look */
@@ -223,14 +227,20 @@ img {
             background: rgba(0, 0, 0);
             color: white;
             padding: 1rem;
-            position: fixed;
+            position: relative;
             width: 100%;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 999999 !important;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
             pointer-events: auto;
+            /* iOS Safe Area Support */
+            padding-top: max(1rem, env(safe-area-inset-top));
+            padding-left: max(1rem, env(safe-area-inset-left));
+            padding-right: max(1rem, env(safe-area-inset-right));
         }
         
         .menu-container {
@@ -322,9 +332,10 @@ img {
         }
         
         .mobile-menu {
-            position: fixed;
+            position:fixed;
             top: -100vh;
             left: 0;
+            right: 0;
             width: 100%;
             height: auto;
             max-height: calc(100vh - 70px);
@@ -333,18 +344,30 @@ img {
             z-index: 999999 !important;
             padding: 1rem;
             overflow-y: auto;
+            overflow-x: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             pointer-events: auto;
+            /* iOS Safe Area Support */
+            padding-bottom: max(1rem, env(safe-area-inset-bottom));
+            /* Hide scrollbar but keep functionality */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        
+        .mobile-menu::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
         }
         
         .mobile-menu.active {
-            top: 70px;
+            top: calc(70px + env(safe-area-inset-top));
         }
         
         .menu-nav {
             position: relative;
             z-index: 999999 !important;
             pointer-events: auto;
+            overflow: hidden;
+            width: 100%;
         }
         
         .menu-nav ul {
@@ -352,6 +375,10 @@ img {
             position: relative;
             z-index: 999999 !important;
             pointer-events: auto;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow: hidden;
         }
         
         .menu-nav ul li {
@@ -365,13 +392,17 @@ img {
             color: white;
             text-decoration: none;
             font-size: 1.1rem;
-            display: block;
+            display: flex;
+            align-items: center;
             padding: 0.8rem 1rem;
             transition: all 0.3s;
             border-radius: 4px;
             position: relative;
             z-index: 999999 !important;
             pointer-events: auto;
+            width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
         }
         
         .menu-nav ul li a:hover {
@@ -387,6 +418,8 @@ img {
             position: relative;
             z-index: 999999 !important;
             pointer-events: auto;
+            flex-shrink: 0;
+            display: inline-block;
         }
         
         .menu-overlay {
@@ -416,4 +449,31 @@ img {
         }
       
         
+}
+
+/* iOS Specific Fixes */
+@supports (-webkit-touch-callout: none) {
+    .menu-section {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+    
+    .mobile-menu {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+    
+    .menu-toggle {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
 }

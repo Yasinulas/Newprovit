@@ -216,7 +216,9 @@ class CommonUtils {
       
       mobileMenu.classList.toggle('active');
       menuOverlay.classList.toggle('active');
+      
       document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+      
       
       // Menü ikonunu değiştir
       const icon = menuToggle.querySelector('i');
